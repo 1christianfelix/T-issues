@@ -3,7 +3,6 @@
  */
 package com.christian.springboot.myfirstwebapp.login;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 /**
