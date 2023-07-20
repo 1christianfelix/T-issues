@@ -4,10 +4,9 @@ import Welcome from "./Welcome";
 
 export const TodoApp = () => {
   return (
-    <div className="TodoApp">
-      TodoApp
+    <div className="TodoApp h-screen w-screen">
       <Login />
-      <Welcome />
+      {/* <Welcome /> */}
     </div>
   );
 };

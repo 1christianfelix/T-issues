@@ -3,7 +3,7 @@ import { TodoApp } from "./components/TodoApp";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App h-[100%] w-screen">
       <TodoApp></TodoApp>
     </div>
   );
