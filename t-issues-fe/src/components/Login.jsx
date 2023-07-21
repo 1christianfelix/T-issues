@@ -1,10 +1,23 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AiOutlineCheckCircle } from "react-icons/ai";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  toastLoginSuccess,
+  toastLoginFail,
+  toastClear,
+} from "../store/toastSlice";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [toastLoginMsg, setToastLoginMsg] = useState("");
+
+  const navigate = useNavigate();
+
+  const toast = useSelector((state) => state.toast.toast);
+
+  const dispatch = useDispatch();
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -17,35 +30,36 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (username.length && password.length) {
-      setToastLoginMsg(
-        <div className="toast">
-          <div className="alert alert-success flex">
-            <span className="text-base">
-              <div className="flex items-center">
-                <AiOutlineCheckCircle color="green" size="2rem" /> &nbsp; Login
-                Successful!
-              </div>
-            </span>
-          </div>
-        </div>
-      );
+      dispatch(toastLoginSuccess());
+      // setToastLoginMsg(
+      //   <div className="toast">
+      //     <div className="alert alert-success flex">
+      //       <span className="text-base">
+      //         <div className="flex items-center">
+      //           <AiOutlineCheckCircle color="green" size="2rem" /> &nbsp; Login
+      //           Successful!
+      //         </div>
+      //       </span>
+      //     </div>
+      //   </div>
+      // );
+      navigate("/");
     } else {
-      setToastLoginMsg(
-        <div className="toast">
-          <div className="alert alert-error flex">
-            <span className="text-base">
-              <div className="flex items-center">
-                <AiOutlineCheckCircle color="red" size="2rem" /> &nbsp; Login
-                Failed!
-              </div>
-            </span>
-          </div>
-        </div>
-      );
+      dispatch(toastLoginFail());
+
+      // setToastLoginMsg(
+      //   <div className="toast">
+      //     <div className="alert alert-error flex">
+      //       <span className="text-base">
+      //         <div className="flex items-center">
+      //           <AiOutlineCheckCircle color="red" size="2rem" /> &nbsp; Login
+      //           Failed!
+      //         </div>
+      //       </span>
+      //     </div>
+      //   </div>
+      // );
     }
-    setTimeout(() => {
-      setToastLoginMsg(null);
-    }, 3000);
   };
 
   return (
