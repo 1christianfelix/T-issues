@@ -2,7 +2,7 @@ package com.christian.tissues.tissuesbe.model;
 
 import java.time.LocalDate;
 
-public class IssueModel {
+public class Issue {
 
 	private boolean done;
 	private LocalDate targetDate;
@@ -11,9 +11,9 @@ public class IssueModel {
 	private int id;
 
 //	Default constructor
-	public IssueModel() {};
+	public Issue() {};
 	
-	public IssueModel(int id, String username, String description, LocalDate targetDate, boolean done) {
+	public Issue(int id, String username, String description, LocalDate targetDate, boolean done) {
 		super();
 		this.id = id;
 		this.username = username;
