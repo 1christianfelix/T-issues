@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Login from "./Login";
 import Welcome from "./Welcome";
 
-export const TodoApp = () => {
+const TissuesApp = () => {
   return (
     <div className="TodoApp h-screen w-screen">
       <Routes>
@@ -14,3 +14,5 @@ export const TodoApp = () => {
     </div>
   );
 };
+
+export default TissuesApp;

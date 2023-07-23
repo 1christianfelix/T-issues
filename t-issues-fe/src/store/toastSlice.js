@@ -2,19 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
-{
-  /* <div className="toast">
-          <div className="alert alert-success flex">
-            <span className="text-base">
-              <div className="flex items-center">
-                <AiOutlineCheckCircle color="green" size="2rem" /> &nbsp;{" "}
-                {toast.message}
-              </div>
-            </span>
-          </div>
-        </div> */
-}
-
 const initialState = {
   type: null,
   alert: "",

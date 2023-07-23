@@ -1,13 +1,13 @@
-package com.christian.springboot.myfirstwebapp;
+package com.christian.tissues.tissuesbe;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MyfirstwebappApplication {
+public class TIssuesBeApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MyfirstwebappApplication.class, args);
+		SpringApplication.run(TIssuesBeApplication.class, args);
 	}
 
 }
