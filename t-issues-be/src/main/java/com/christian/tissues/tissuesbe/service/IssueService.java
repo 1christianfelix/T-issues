@@ -49,7 +49,7 @@ public class IssueService {
 		return issue;
 	}
 	
-	public void updateTodo(Issue issue) {
+	public void updateIssue(Issue issue) {
 		deleteById(issue.getId());
 		issues.add(issue);
 	}
