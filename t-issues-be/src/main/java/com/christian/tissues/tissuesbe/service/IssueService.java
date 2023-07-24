@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.christian.tissues.tissuesbe.model.Issue;
 
 @Service
-public class TodoService {
+public class IssueService {
 	
 	private static List<Issue> issues = new ArrayList<>();
 	
