@@ -1,4 +1,5 @@
 import "./App.css";
+import IssueDashboard from "./components/IssueDashboard";
 import TissuesApp from "./components/TissuesApp";
 import Toast from "./util/Toast";
 
