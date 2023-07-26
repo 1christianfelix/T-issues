@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const issues = [
   {
@@ -17,11 +17,38 @@ const issues = [
 ];
 
 const formatDate = (date) => {
-  const options = { year: "numeric", month: "2-digit", day: "2-digit" };
-  return date.toLocaleDateString(undefined, options);
+  const dateObject = new Date(date);
+  const options = { month: "2-digit", day: "2-digit", year: "2-digit" };
+  return dateObject.toLocaleDateString(undefined, options);
 };
 
 const IssueDashboard = () => {
+  const [issues, setIssues] = useState([]);
+
+  useEffect(() => {
+    const fetchIssues = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:8080/users/in28minutes/issues",
+          {
+            headers: {
+              Origin: "http://localhost:3000",
+            },
+          }
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch issues");
+        }
+        const data = await response.json();
+        setIssues(data);
+      } catch (error) {
+        console.error("Error fetching issues:", error);
+      }
+    };
+
+    fetchIssues();
+  }, []);
+
   return (
     <div className="container mx-auto mt-8">
       <h1 className="text-2xl font-bold mb-4">Issue Dashboard</h1>
