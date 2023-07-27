@@ -25,9 +25,7 @@ public class IssueService {
         this.userRepository = userRepository;
     }
 
-    public List<Issue> findByUsername(String username) {
-        return issueRepository.findByUserUsernameIgnoreCase(username);
-    }
+ 
 
     public Issue addIssue(String username, String description, LocalDate targetDate, boolean done) {
     	User user = userRepository.findByUsername(username); // Assuming you have a UserRepository to find the user
@@ -39,12 +37,16 @@ public class IssueService {
         return issueRepository.save(issue);
     }
 
-    public void deleteById(Long id) {
+    public void deleteIssue(Long id) {
         issueRepository.deleteById(id);
     }
 
-    public Issue findById(Long id) {
+    public Issue getIssue(Long id) {
         return issueRepository.findById(id).orElse(null);
+    }
+    
+    public List<Issue> getIssues(String username) {
+        return issueRepository.findByUserUsernameIgnoreCase(username);
     }
 
     public void updateIssue(Issue issue) {
