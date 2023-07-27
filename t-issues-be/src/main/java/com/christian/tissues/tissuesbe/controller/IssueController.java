@@ -70,6 +70,9 @@ public class IssueController {
 	            request.getTargetDate(),
 	            request.isDone()
 	        );
+		if (issue == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 		return new ResponseEntity<>(issue, HttpStatus.CREATED);
 
 	}

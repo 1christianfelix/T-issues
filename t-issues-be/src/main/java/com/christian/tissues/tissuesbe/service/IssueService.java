@@ -17,24 +17,25 @@ import java.util.List;
 public class IssueService {
 
     private final IssueRepository issueRepository;
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
-    public IssueService(IssueRepository issueRepository, UserRepository userRepository) {
+    public IssueService(IssueRepository issueRepository, UserService userService) {
         this.issueRepository = issueRepository;
-        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
  
 
     public Issue addIssue(String username, String description, LocalDate targetDate, boolean done) {
-    	User user = userRepository.findByUsername(username); // Assuming you have a UserRepository to find the user
+    	User user = userService.getUserByUsername(username); // Assuming you have a UserRepository to find the user
     	if (user == null) {
             // Handle the case where the user doesn't exist with the given username.
-            throw new RuntimeException("User with username " + username + " not found!");
+            return null;
         }
     	Issue issue = new Issue(description, targetDate, done, user);
-        return issueRepository.save(issue);
+    	issueRepository.save(issue);
+        return issue;
     }
 
     public Issue deleteIssue(Long id) {
