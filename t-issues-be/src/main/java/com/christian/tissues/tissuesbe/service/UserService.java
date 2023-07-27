@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.christian.tissues.tissuesbe.model.Issue;
 import com.christian.tissues.tissuesbe.model.User;
 import com.christian.tissues.tissuesbe.repository.UserRepository;
 
@@ -31,6 +32,10 @@ public class UserService {
     public User getUser(Long id) {
         return userRepository.findById(id).orElse(null);
     }
+    
+    public User getUserByUsername(String username) {
+    	return userRepository.findByUsername(username);
+    }
 
     public User deleteUser(Long id) {
     	userRepository.deleteById(id);
@@ -38,5 +43,7 @@ public class UserService {
         return user;
     }
 
-    // Other custom methods can be added if needed.
+    public void updateUser(User user) {
+    	userRepository.save(user);
+    }
 }

@@ -37,8 +37,10 @@ public class IssueService {
         return issueRepository.save(issue);
     }
 
-    public void deleteIssue(Long id) {
+    public Issue deleteIssue(Long id) {
+    	Issue issue = issueRepository.findById(id).orElse(null);
         issueRepository.deleteById(id);
+        return issue;
     }
 
     public Issue getIssue(Long id) {
