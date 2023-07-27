@@ -1,56 +1,53 @@
 package com.christian.tissues.tissuesbe.service;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.christian.tissues.tissuesbe.model.Issue;
+import com.christian.tissues.tissuesbe.model.User;
+import com.christian.tissues.tissuesbe.repository.IssueRepository;
+import com.christian.tissues.tissuesbe.repository.UserRepository;
 
+import java.time.LocalDate;
+import java.util.List;
+
+
+//Service serves as middleware
 @Service
 public class IssueService {
-	
-	private static List<Issue> issues = new ArrayList<>();
-	
-	private static int issuesCount = 0;
-	
-	static {
-		issues.add(new Issue(++issuesCount, "in28minutes","Get AWS Certified", 
-							LocalDate.now().plusYears(10), false ));
-		issues.add(new Issue(++issuesCount, "in28minutes","Learn DevOps", 
-				LocalDate.now().plusYears(11), false ));
-		issues.add(new Issue(++issuesCount, "in28minutes","Learn Full Stack Development", 
-				LocalDate.now().plusYears(12), false ));
-	}
 
-//	Predicate is acting as a lambda function and we're using Issue as type of issue
-	public List<Issue> findByUsername(String username){
-		Predicate<? super Issue> predicate =
-						issue -> issue.getUsername().equalsIgnoreCase(username);
-		return issues.stream().filter(predicate).toList();
-	}
-	
-	public Issue addIssue(String username, String description, LocalDate targetDate, boolean done) {
-		Issue issue = new Issue(++issuesCount, username, description, targetDate, done);
-		issues.add(issue);
-		return issue;
-	}
-	
-	public void deleteById(int id) {
-		Predicate<? super Issue> predicate = issue -> issue.getId() == id;
-		issues.removeIf(predicate);
-	}
-	
-	public Issue findById(int id) {
-		Predicate<? super Issue> predicate = issue -> issue.getId() == id;
-		Issue issue = issues.stream().filter(predicate).findFirst().get();
-		return issue;
-	}
-	
-	public void updateIssue(Issue issue) {
-		deleteById(issue.getId());
-		issues.add(issue);
-	}
+    private final IssueRepository issueRepository;
+    private UserRepository userRepository;
+
+    @Autowired
+    public IssueService(IssueRepository issueRepository, UserRepository userRepository) {
+        this.issueRepository = issueRepository;
+        this.userRepository = userRepository;
+    }
+
+    public List<Issue> findByUsername(String username) {
+        return issueRepository.findByUserUsernameIgnoreCase(username);
+    }
+
+    public Issue addIssue(String username, String description, LocalDate targetDate, boolean done) {
+    	User user = userRepository.findByUsername(username); // Assuming you have a UserRepository to find the user
+    	if (user == null) {
+            // Handle the case where the user doesn't exist with the given username.
+            throw new RuntimeException("User with username " + username + " not found!");
+        }
+    	Issue issue = new Issue(description, targetDate, done, user);
+        return issueRepository.save(issue);
+    }
+
+    public void deleteById(Long id) {
+        issueRepository.deleteById(id);
+    }
+
+    public Issue findById(Long id) {
+        return issueRepository.findById(id).orElse(null);
+    }
+
+    public void updateIssue(Issue issue) {
+        issueRepository.save(issue);
+    }
 }

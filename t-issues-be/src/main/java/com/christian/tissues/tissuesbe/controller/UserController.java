@@ -1,5 +1,8 @@
 package com.christian.tissues.tissuesbe.controller;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,10 +19,15 @@ public class UserController {
 		this.userRepository = userRepository;
 	}
 	
-	@PostMapping("/user")
+	@PostMapping("/users")
 	User newUser(@RequestBody User newUser) {
 			return userRepository.save(newUser);
 		}
+	
+	@GetMapping("/users")
+	List<User> getUser() {
+		return userRepository.findAll();
+	}
 	
 
 }

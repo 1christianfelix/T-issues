@@ -1,71 +1,72 @@
 package com.christian.tissues.tissuesbe.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import java.time.LocalDate;
 
+@Entity
 public class Issue {
 
-	private boolean done;
-	private LocalDate targetDate;
-	private String description;
-	private String username;
-	private int id;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-//	Default constructor
-	public Issue() {};
-	
-	public Issue(int id, String username, String description, LocalDate targetDate, boolean done) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.description = description;
-		this.targetDate = targetDate;
-		this.done = done;
-	}
+    private boolean done;
+    private LocalDate targetDate;
+    private String description;
 
-	public boolean isDone() {
-		return done;
-	}
+    @ManyToOne
+    private User user;
 
-	public void setDone(boolean done) {
-		this.done = done;
-	}
+    public Issue() {}
+    
+    public Issue(String description, LocalDate targetDate, boolean done, User user) {
+        this.description = description;
+        this.targetDate = targetDate;
+        this.done = done;
+        this.user = user;
+    }
 
-	public LocalDate getTargetDate() {
-		return targetDate;
-	}
+	public Long getId() {
+        return id;
+    }
 
-	public void setTargetDate(LocalDate targetDate) {
-		this.targetDate = targetDate;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public boolean isDone() {
+        return done;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setDone(boolean done) {
+        this.done = done;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public LocalDate getTargetDate() {
+        return targetDate;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setTargetDate(LocalDate targetDate) {
+        this.targetDate = targetDate;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	@Override
-	public String toString() {
-		return "Todo [id=" + id + ", username=" + username + ", description=" + description + ", targetDate="
-				+ targetDate + ", done=" + done + "]";
-	}
-	
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 }
