@@ -7,8 +7,8 @@ import Nav from "./components/Nav";
 function App() {
   return (
     <div className="App h-screen w-screen">
+      <Toast />
       <Nav></Nav>
-      <Toast></Toast>
       <TissuesApp></TissuesApp>
     </div>
   );

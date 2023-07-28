@@ -42,8 +42,8 @@ const Login = () => {
     <form method="dialog" className="modal-box" onSubmit={handleSubmit}>
       <div className="Login">
         {/* {toastLoginMsg} */}
-        <div className="flex flex-col items-center justify-center gap-4 m-40">
-          <div className="text-xl text-center">
+        <div className="flex flex-col items-center justify-center gap-4">
+          <div className="text-3xl text-center">
             <div>Login</div>
           </div>
           <div>

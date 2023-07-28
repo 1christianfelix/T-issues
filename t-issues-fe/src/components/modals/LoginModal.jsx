@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Login from "./Login";
+import Toast from "../../util/Toast";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -39,7 +40,8 @@ const LoginModal = () => {
     }
   };
   return (
-    <dialog id="login_modal" className="modal">
+    <dialog id="login_modal" className="modal -z-30">
+      <Toast></Toast>
       <Login />
       <form method="dialog" className="modal-backdrop">
         <button>close</button>

@@ -9,7 +9,6 @@ const TissuesApp = () => {
   return (
     <div className="TodoApp h-screen w-screen">
       <Routes>
-        <Route path="/login" element={<Login />} />
         <Route path="/" element={<IssueDashboard />} />
       </Routes>
     </div>
