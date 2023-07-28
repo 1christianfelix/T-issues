@@ -4,10 +4,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-
-
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "_user")
 public class User {
 	
 	@Id
@@ -19,6 +21,8 @@ public class User {
 	private String name;
 	@Column(unique = true)
 	private String email;
+	
+	@NotNull(message = "Password is required")
 	private String password;
 	
 	public Long getId() {

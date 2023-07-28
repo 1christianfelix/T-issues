@@ -28,14 +28,11 @@ const IssueDashboard = () => {
   useEffect(() => {
     const fetchIssues = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:8080/users/in28minutes/issues",
-          {
-            headers: {
-              Origin: "http://localhost:3000",
-            },
-          }
-        );
+        const response = await fetch("http://localhost:8080/issues/username", {
+          headers: {
+            Origin: "http://localhost:3000",
+          },
+        });
         if (!response.ok) {
           throw new Error("Failed to fetch issues");
         }

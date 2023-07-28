@@ -7,7 +7,7 @@ import IssueDashboard from "./IssueDashboard";
 
 const TissuesApp = () => {
   return (
-    <div className="TodoApp h-screen w-screen">
+    <div className="TodoApp">
       <Routes>
         <Route path="/" element={<IssueDashboard />} />
       </Routes>

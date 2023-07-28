@@ -5,7 +5,7 @@ import LoginModal from "./modals/LoginModal";
 
 const Nav = () => {
   return (
-    <nav className="bg-primary p-4">
+    <nav className="bg-primary p-4 w-[100%]">
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
           <div className="text-white font-bold text-xl">T-issues</div>

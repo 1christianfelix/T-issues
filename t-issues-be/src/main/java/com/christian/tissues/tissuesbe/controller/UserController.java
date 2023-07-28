@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.christian.tissues.tissuesbe.model.User;
+import com.christian.tissues.tissuesbe.model.UserLoginRequest;
 import com.christian.tissues.tissuesbe.service.UserService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/users")
@@ -27,9 +30,21 @@ public class UserController {
 	}
 	
 	@PostMapping("")
-	User newUser(@RequestBody User newUser) {
+	User newUser(@RequestBody @Valid  User newUser) {
 			return userService.createUser(newUser);
 		}
+	
+	@PostMapping("/login")
+	ResponseEntity<User> loginUser(@RequestBody UserLoginRequest loginInfo) {
+		
+		User user = userService.login(loginInfo);
+		
+		if(user == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<>(user, HttpStatus.OK);
+	}
 	
 	@GetMapping("")
 	List<User> getUsers() {

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.christian.tissues.tissuesbe.model.Issue;
 import com.christian.tissues.tissuesbe.model.User;
+import com.christian.tissues.tissuesbe.model.UserLoginRequest;
 import com.christian.tissues.tissuesbe.repository.UserRepository;
 
 @Service
@@ -22,6 +23,26 @@ public class UserService {
     
     public User createUser(User newUser) {
     	return userRepository.save(newUser);
+    }
+    
+    public User login(UserLoginRequest loginInfo) {
+    	String username = loginInfo.getUsername();
+        String password = loginInfo.getPassword();
+        
+        User user = userRepository.findByUsername(username);
+        
+        // Check if the user exists
+        if (user == null) {
+            return null; // User not found
+        }
+
+        // Check if the passwords match
+        if (!user.getPassword().equals(password)) {
+            return null; // Incorrect password
+        }
+
+        // If both checks pass, return the user info
+        return user;
     }
     
     public List<User> getUsers(){
