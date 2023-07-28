@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import Login from "./Login";
+import Login from "./modals/Login";
 import Welcome from "./Welcome";
 import IssueDashboard from "./IssueDashboard";
 

@@ -12,7 +12,7 @@ const Nav = () => {
           <div className="md:flex items-center hidden">
             <button
               className="ml-4 px-4 py-2 bg-accent rounded-md text-accent-content"
-              onClick={() => window.my_modal_2.showModal()}
+              onClick={() => window.login_modal.showModal()}
             >
               Login
             </button>
